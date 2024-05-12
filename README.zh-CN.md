@@ -3,5 +3,5 @@
 运行：
 
 ```go
-go run main.go
+go run .
 ```

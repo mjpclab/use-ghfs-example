@@ -18,14 +18,16 @@ func main() {
 	params, errs := param.NewParams([]param.Param{
 		// virtual host 0
 		{
-			Root:    "/tmp",
-			Listens: []string{"8080"},
+			Root:      "/tmp",
+			Listens:   []string{"8080"},
+			IndexUrls: []string{"/"},
 		},
 		// virtual host 1
 		{
 			Root:         "/usr",
 			Listens:      []string{"8443"},
 			Certificates: []tls.Certificate{cert},
+			IndexUrls:    []string{"/"},
 		},
 	})
 	if len(errs) > 0 {
