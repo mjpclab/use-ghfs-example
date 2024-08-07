@@ -1,7 +1,6 @@
 package main
 
 import (
-	"crypto/tls"
 	"fmt"
 	"mjpclab.dev/ghfs/src/app"
 	"mjpclab.dev/ghfs/src/param"
@@ -9,12 +8,6 @@ import (
 )
 
 func main() {
-	cert, err := tls.LoadX509KeyPair("cert/example.crt", "cert/example.key")
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-
 	params, errs := param.NewParams([]param.Param{
 		// virtual host 0
 		{
@@ -26,7 +19,7 @@ func main() {
 		{
 			Root:         "/usr",
 			Listens:      []string{"8443"},
-			Certificates: []tls.Certificate{cert},
+			CertKeyPaths: [][2]string{{"cert/example.crt", "cert/example.key"}},
 			IndexUrls:    []string{"/"},
 		},
 	})

@@ -3,5 +3,9 @@
 Run:
 
 ```go
-go run .
+go run use-as-module.go
+```
+
+```go
+go run use-as-middleware.go
 ```
