@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"mjpclab.dev/ghfs/src/app"
 	"mjpclab.dev/ghfs/src/param"
-	"mjpclab.dev/ghfs/src/setting"
 )
 
 func main() {
@@ -28,14 +27,8 @@ func main() {
 		return
 	}
 
-	// setting
-	setting := &setting.Setting{
-		Quiet:   false,
-		PidFile: "",
-	}
-
 	// app
-	appInst, errs := app.NewApp(params, setting)
+	appInst, errs := app.NewApp(params)
 	if len(errs) > 0 {
 		fmt.Println(errs)
 		return

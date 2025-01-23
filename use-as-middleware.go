@@ -4,10 +4,7 @@ import (
 	"log"
 	"mjpclab.dev/ghfs/src/param"
 	"mjpclab.dev/ghfs/src/serverHandler"
-	"mjpclab.dev/ghfs/src/serverLog"
-	"mjpclab.dev/ghfs/src/tpl/defaultTheme"
 	"net/http"
-	"os"
 )
 
 func main() {
@@ -20,8 +17,7 @@ func main() {
 		IndexUrls: []string{"/"},
 	}
 	p.Normalize()
-	logger, _ := serverLog.NewWriterMan().NewLogger(os.Stdout, os.Stderr)
-	fsHandler, _ := serverHandler.NewVhostHandler(p, logger, defaultTheme.DefaultTheme)
+	fsHandler, _ := serverHandler.NewVhostHandler(p, nil, nil)
 	http.Handle("/files/", http.StripPrefix("/files/", fsHandler))
 
 	log.Println("Listening on port 8080...")
